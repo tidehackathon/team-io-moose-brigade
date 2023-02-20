@@ -7,4 +7,4 @@ You will need to update the ".smss" file with the proper credentails.
 
 You can create a zip file containing the database smss file with its corresponding database folder and upload it into your SEMOSS instance through the catalog UI:
 
-![Alt text](img/database-upload.png?raw=true "SEMOSS Catalog UI")
+![Alt text](../img/database-upload.png?raw=true "SEMOSS Catalog UI")
