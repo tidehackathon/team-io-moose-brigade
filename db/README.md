@@ -5,4 +5,6 @@ Databases in SEMOSS contain a ".smss" file which holds connection details and a 
 Database metamata is stored in a OWL file which describes the database tables, columns, and connections.
 You will need to update the ".smss" file with the proper credentails. 
 
-You can zip up the database folder and the smss file together and upload it into your instance through the SEMOSS catalog UI.
+You can create a zip file containing the database smss file with its corresponding database folder and upload it into your SEMOSS instance through the catalog UI:
+
+![Alt text](img/database-upload.png?raw=true "SEMOSS Catalog UI")
