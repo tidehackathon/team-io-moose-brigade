@@ -1,2 +1,3 @@
-# team-io-moose-brigade
-Interoperability Moose Brigade
+# Interoperability Moose Brigade
+
+![Alt text](/img/team-logo.png?raw=true)
