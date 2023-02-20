@@ -1,0 +1,16 @@
+#Base Properties
+ENGINE	666faa3d-ec1a-4109-8889-8b7e17470ccf
+ENGINE_ALIAS	TIDE
+ENGINE_TYPE	prerna.engine.impl.rdbms.RDBMSNativeEngine
+OWL	db/@ENGINE@/TIDE_OWL.OWL
+
+DRIVER	org.postgresql.Driver
+DBDRIVER	POSTGRES
+SCHEMA	public
+HOSTNAME	<DNS>
+DATABASE	<database>
+PASSWORD	<password>
+PORT	5432
+USERNAME	<username>
+CONNECTION_URL	jdbc:postgresql://<DNC<:5432/<database>?currentSchema=<schema>
+USE_CONNECTION_POOLING	false
