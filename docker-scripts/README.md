@@ -3,7 +3,7 @@
 Requirement: Docker has been installed on the host OS.  You can reference documentation here: https://docs.docker.com/engine/install/
 Note: This is to standup a quick VM.  To setup a production instance you should utilize the SEMOSS HELM at https://github.com/SEMOSS/SEMOSS_Helm
 
-The .startSEMOSS.sh is useful to start up the instance with the necessary volume mount for the local databases / insights.
+The ./startSEMOSS.sh is useful to start up the instance with the necessary volume mount for the local databases / insights.
 
 To initialize the volume mount /opt/semoss/semosshome, you can first start an instance of SEMOSS using:
 
