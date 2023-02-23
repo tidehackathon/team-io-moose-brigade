@@ -11,7 +11,7 @@ The insight that executes and generated the mapping can be [found here](https://
 #### Running the r script locally
 Note: this requires 2 csv's with the input data in your working directory
 
-```
+```r
 library(data.table);
 library(stringdist);
 
