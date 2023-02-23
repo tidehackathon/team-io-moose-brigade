@@ -1,10 +1,22 @@
-# Database Setup
+# Graph Standard Comparison Description
 
-Databases in SEMOSS contain a ".smss" file which holds connection details and a corresponding folder containing metadata around the database. As an example. TIDE__666faa3d-ec1a-4109-8889-8b7e17470ccf folder and TIDE__666faa3d-ec1a-4109-8889-8b7e17470ccf.smss represent a single database together.
+This dashboard shows a year-to-year participant comparison of the information exchange procedure for a given interoperability standard requirements testcase.
 
-Database metadata is stored in a OWL file (RDF/XML format) which describes the database tables, columns, and connections.
-You will need to update the ".smss" file with the proper credentials. 
+To begin, the user should select a given standard that is tested across multiple execise cycles. The default comparison cycles are CWIX 2021 and CWIX 2022 but these can be easily paramterized.
+![Alt text](graph-standard-comparison-start?raw=true "Starting Point")
 
-You can create a zip file containing the database smss file with its corresponding database folder and upload it into your SEMOSS instance through the catalog UI:
+Once a standard selection has been made, the user will see a side-by-side architectural comaprison of the test case particpants as well as some of the overall outcomes. 
+![Alt text](graph-standard-comparison?raw=true "Side-by-side comparison")
 
-![Alt text](../img/database-upload.png?raw=true "SEMOSS Catalog UI")
+Currently the user should see the following information:
+* Standard Name
+* Test Case Numbers
+* Issue Category Name Per Test Case
+* Overall Result Per Test Case
+* Capabilities Particpating in the Test Case
+* Nations Particpating in the Test Case
+* Focus Areas
+
+![Alt text](graph-standard-comparison-expanded?raw=true "SEMOSS Catalog UI")
+
+As more information becomes available, it can easily be added to the architectural view via the insight recipe.
