@@ -23,9 +23,12 @@ overall_result='Success' and
 )
 ```
 
-This information is then joined with another database where we will store the user notes to justify the overall "Success" score which contains the test case id, the user who submitted the note, the actual note text, and the timestamp the note was added.
+This information is then joined with another database where we will store the user notes to justify the overall "Success" score which contains the test case id, the user who submitted the note, the actual note text, and the timestamp the note was added.  This gives you the ability to create and join new datasources dynamically without requiring the time of DBAs to create ETL pipelines that they have to continually manage.
 
 This provides us an example of how dashboards are no longer read-only views, but can become into data products allowing read-write capabilities to not just see data quality issues but update them in real time.
+
+![Alt text](pipeline.png?raw=true)
+
 
 Link to [Insight Recipe Here](https://github.com/tidehackathon/team-io-moose-brigade/tree/main/project/TIDE_Hackathon__a2caf44b-60bf-48ca-b4f6-3d5e048079ea/app_root/version/26e026ee-d263-4146-9a1b-f2ee521b5121)
 
