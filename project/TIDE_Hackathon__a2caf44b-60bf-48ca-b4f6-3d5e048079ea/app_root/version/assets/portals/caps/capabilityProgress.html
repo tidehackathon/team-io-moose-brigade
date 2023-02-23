@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap Progress Bar</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+
+  </head>
+
+  <body>
+    <style>
+      .container {
+        padding-right: 0px;
+        padding-left: 0px;
+        margin-right: auto;
+        margin-left: auto;
+        }
+
+        .progress {
+        display: flex;
+        height: 1rem;
+        overflow: hidden;
+        font-size: 0.75rem;
+        background-color: #e9ecef;
+        border-radius: 0.25rem;
+        width: 120%;
+        }
+
+        .row-group {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        column-gap: 60px;
+        padding: 1%;
+        }
+
+        .title {
+        width: 20%;
+
+        text-align: left;
+
+        }
+
+        .title2 {
+        display: flex;
+        width: 120%;
+        text-align: left;
+        }
+
+        .headerbar {
+        overflow: hidden;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: #fff;
+        }
+        .main {
+        padding: 16px;
+        margin-top: 30px;
+        height: 1500px; /* Used in this example to enable scrolling */
+      }
+    </style>
+    <main>
+      <div class="headerbar">
+        <h1 style="color: #002e51">&nbsp; Capability Success Rate</h1>
+      </div>
+      <div id="records" class="main"></div>
+    </main>
+
+    <script src="./semoss.js"></script>
+    <script>
+      // create a new instance of the listener
+      const semoss = new Semoss();
+
+      // track if the button is paused or not
+      let yearView = false;
+
+      // grab the elements
+      //const bsoEle = document.body.querySelector("#records");
+      //let demo = document.body.querySelector("#demo");
+      const recordsEle = document.body.querySelector("#records");
+
+      const getRecords = () => {
+        let queryString;
+        if (yearView){
+          queryString = `Frame ( frame = [ capOverallPass ] ) | Select ( capability_name , exercise_cycle , num_pass , num_fail , total ) | Distinct ( true ) | Collect ( - 1 ) ;`;
+        } else{
+          queryString = `Frame ( frame = [ capOverallPass ] ) | Select ( capability_name , Count ( exercise_cycle ) , Sum ( num_pass ) , Sum ( num_fail ) , Sum ( total ) ) | GroupBy ( capability_name ) | Distinct ( true ) | Collect ( - 1 ) ;`;
+        }
+
+        semoss.query(
+          queryString,
+          (response) => {
+            const { operationType, output } = response.pixelReturn[0];
+
+            if (operationType.indexOf("ERROR") > -1) {
+              console.error("ERROR ::: getRecords", output);
+              return;
+            }
+            //data = output.data.values;
+            let queryResult = output.data.values;
+
+            result = {};
+            metrics = {};
+            tycomToParAct = {};
+            parActToAct = {};
+
+            let viewHtml = getMyJSONOutput(queryResult);
+            recordsEle.innerHTML = viewHtml;
+          }
+        );
+      };
+
+      /** Helpers */
+      /**
+       * Get the records from the frame
+       */
+      
+      function getMyJSONOutput(dataInput) {
+            // array of arrays
+            if(yearView){
+              let outputHtml = "<div class=\"container\"><div class=\"row-group\"><div class=\"title\" style=\"color:#000e0a ;padding-right: 60px;\"><h6><u>Nation</u></h6></div><div class=\"title\" style=\"color:#000e0a\"><h6><u>Test Year</u></h6></div><div class=\"title\" style=\"color:#000e0a ;width:120%;\"><h6><u>Test Results</u></h6></div><div class=\"title\" style=\"color:#000e0a\"><h6><u>Total Tests</u></h6></div></div>";
+              outputHtml += "<div class=\"container\">";
+              for(const index in dataInput){
+                const row = dataInput[index];
+                // ( capability_name , exercise_cycle , num_pass , num_fail , total, pass_rate , 1- pass_rate )
+                let nationName = row[0];
+                let exercise_cycle = row[1];
+                let num_pass = row[2];
+                let num_fail = row[3];
+                let total = row[4];
+                let pass_rate = (num_pass/total*100).toFixed(1);
+                let fail_rate = (num_fail/total*100).toFixed(1);
+
+                outputHtml += "<div class=\"row-group\">";
+                outputHtml += "<div class=\"title\" style=\"color:#000e0a ;padding-right: 60px;\">" + nationName + "</div>";
+                if (exercise_cycle != null) {
+                  outputHtml += "<div class=\"title\" style=\"color:#000e0a\">" + exercise_cycle + "</div>";
+                  outputHtml += "<div class=\"progress\">";
+                  outputHtml += "<div class=\"progress-bar bg-success\" style=\"width:" + pass_rate + "%\">" + pass_rate + "%</div>";
+                  outputHtml += "<div class=\"progress-bar bg-danger\" style=\"width:" + fail_rate + "%\">" + fail_rate + "%</div>";
+                } else{
+                  outputHtml += "<div class=\"title\" style=\"color:#000e0a\">" + "" + "</div>";
+                  outputHtml += "<div class=\"progress\">";
+                  outputHtml += "<div class=\"progress-bar bg-danger\" style=\"width:" + 0 + "%\">" + "Unknown" + "%</div>";
+                }
+                outputHtml += "</div>";
+
+                outputHtml += "<div class=\"title\" style=\"color:#000e0a\">" + total + "</div>";
+
+                outputHtml += "</div>";              
+            }
+
+            outputHtml += "</div>"; 
+            return outputHtml;
+
+            } else {
+              let outputHtml = "<div class=\"container\"><div class=\"row-group\"><div class=\"title\" style=\"color:#000e0a ;padding-right: 60px;\"><h6 class=\"title\"><u>Nation</u></h6></div><div class=\"title2\" style=\"color:#000e0a ;padding-right: 60px;\"><h6 class=\"title\"><u>Test Results</u></h6></div><div class=\"title\" style=\"color:#000e0a ;padding-right: 60px;\"><h6 class=\"title\" style=\"width: 120%;\"><u>Total Tests</u></h6></div></div></div>";
+                outputHtml += "<div class=\"container\">";
+                for(const index in dataInput){
+                  const row = dataInput[index];
+                  // ( capability_name , exercise_cycle , num_pass , num_fail , total, pass_rate , 1- pass_rate )
+                  let nationName = row[0];
+                  let exercise_cycle = row[1];
+                  let num_pass = row[2];
+                  let num_fail = row[3];
+                  let total = row[4];
+                  let pass_rate = (num_pass/total*100).toFixed(1);
+                  let fail_rate = (num_fail/total*100).toFixed(1);
+
+                  outputHtml += "<div class=\"row-group\">";
+                  outputHtml += "<div class=\"title\" style=\"color:#000e0a ;padding-right: 60px;\">" + nationName + "</div>";
+                  outputHtml += "<div class=\"progress\">";
+                  if (exercise_cycle != 0) {
+                    outputHtml += "<div class=\"progress-bar bg-success\" style=\"width:" + pass_rate + "%\">" + pass_rate + "%</div>";
+                    outputHtml += "<div class=\"progress-bar bg-danger\" style=\"width:" + fail_rate + "%\">" + fail_rate + "%</div>";
+                  } else{
+                    outputHtml += "<div class=\"progress-bar bg-danger\" style=\"width:" + 0 + "%\">" + "Unknown" + "%</div>";
+                  }
+                  outputHtml += "</div>";
+
+                  outputHtml += "<div class=\"title\" style=\"color:#000e0a\">" + total + "</div>";
+
+                  outputHtml += "</div>";
+                }
+                outputHtml += "</div>"; 
+                return outputHtml;
+          }
+      }
+
+            /**
+       * Listen to pixel updates on the recipe
+       * @param {Event} - event containing information about every pixel
+       */
+       const onPixelUpdate = (e) => {
+        const { payload } = e.detail;
+
+        // refresh the records when any frame changes
+        let refreshData = false;
+        if (payload.pixelReturn) {
+          for (
+            let idx = 0, len = payload.pixelReturn.length;
+            idx < len;
+            idx++
+          ) {
+            const { operationType } = payload.pixelReturn[idx];
+            const { pixelExpression } = payload.pixelReturn[idx].pixelExpression;
+            const { output } = payload.pixelReturn[idx];
+
+            // refresh the data if any frame changes
+            if (operationType.indexOf("FRAME_DATA_CHANGE") > -1
+                  || operationType.indexOf("FRAME_FILTER_CHANGE") > -1) {
+              refreshData = true;
+            }
+            if (payload.pixelReturn[idx].pixelExpression.startsWith("switch") ) {
+              yearView = payload.pixelReturn[idx].output;
+              refreshData = true;
+            }
+          }
+        }
+
+        if (refreshData) {
+          getRecords();
+        }
+      };
+
+      semoss.addListener("pixel-update", onPixelUpdate);
+      // add the unfilterRecords listener to the button
+      //unfilterButtonEle.addEventListener("click", unfilterRecords);
+      getRecords();
+    </script>
+  </body>
+</html>

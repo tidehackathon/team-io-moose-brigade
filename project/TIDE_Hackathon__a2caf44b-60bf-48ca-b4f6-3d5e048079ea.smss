@@ -1,0 +1,14 @@
+#Base Properties
+PROJECT	a2caf44b-60bf-48ca-b4f6-3d5e048079ea
+PROJECT_ALIAS	TIDE_Hackathon
+PROJECT_TYPE	prerna.project.impl.Project
+RDBMS_INSIGHTS	project/@PROJECT@/insights_database
+RDBMS_INSIGHTS_TYPE	H2_DB
+DRIVER	org.h2.Driver
+RDBMS_TYPE	H2_DB
+USERNAME	sa
+PASSWORD	
+CONNECTION_URL	jdbc:h2:nio:@BaseFolder@/project/TIDE_Hackathon__a2caf44b-60bf-48ca-b4f6-3d5e048079ea/insights_database;query_timeout=180000;early_filter=true;query_cache_size=24;cache_size=32768
+
+PUBLIC_HOME_ENABLE true
+COPY_PROJECT true

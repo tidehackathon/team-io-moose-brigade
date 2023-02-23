@@ -1,0 +1,156 @@
+<div id="TextWidget" ,="" class="container">
+
+    <div class="header">
+        <div>
+            <br>
+            Overall Interoperability Metrics
+        </div>
+    </div>
+    <div class="row">
+        <div class="row__stat">
+
+            <div class="number">
+                {{StdCov[0].output*100 |number:1}} %
+            </div>
+            <div class="line"></div>
+            <div class="label">
+                Standard Test Coverage
+            </div>
+        </div>
+        <div class="row__stat">
+
+            <div class="number">
+                {{NatCapCov[0].output*100 |number:1}} %
+            </div>
+            <div class="line"></div>
+            <div class="label">
+                Nation's With Capability Coverage
+            </div>
+        </div>
+        <div class="row__stat">
+
+            <div class="number">
+                {{NatCapNotTested[0].output*100 |number:1}} %
+            </div>
+            <div class="line"></div>
+            <div class="label">
+                Nation's With Capabilities Not Tested
+            </div>
+        </div>
+     </div>
+</div>
+<style>
+    #TextWidget {
+        --header-background: white;
+        --header-color: black;
+        --row-color: black;
+        /* --row__stat-background: linear-gradient(#9ccadb, #1f87ad); */
+        --line-background: black;
+    }
+
+    #TextWidget .container {
+        height: 100%;
+        width: 100%;
+    }
+
+    #TextWidget .header {
+        width: 100%;
+        text-align: center;
+        font-weight: bold;
+        border: var(--header-border);
+        background: var(--header-background);
+        color: black;
+        font-size: 3vh;
+        padding: 5px;
+    }
+
+    #TextWidget .row {
+        height: 25%;
+        color: var(--row-color);
+        width: 100%;
+    }
+
+    #TextWidget .row__stat {
+        display: inline-block;
+        width: 33.3333%;
+        border: var(--row__stat-border);
+        overflow: hidden;
+        font-size: 1vh;
+        background: var(--row__stat-background);
+        /* white-space: nowrap; */
+        margin-right: -4px;
+        padding-bottom: 10px;
+    }
+
+    #TextWidget .icon {
+        width: 100%;
+        display: inline-block;
+        text-align: center;
+        font-size: 4vh;
+        overflow: hidden;
+        margin-top: 5%;
+    }
+
+    #TextWidget .icon img {
+        height: 42px;
+        width: 42px;
+    }
+
+    #TextWidget .number {
+        font-size: 1.8vh;
+        width: 100%;
+        font-weight: bold;
+        height: 2.8vh;
+        margin: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: center;
+        margin-top: 2.5%;
+    }
+
+    #TextWidget .line {
+        width: 80%;
+        display: inline-block;
+        margin-left: 10%;
+        background: var(--line-background);
+        height: 2px;
+        margin-top: 2.5%;
+    }
+
+    #TextWidget .label {
+        font-size: 1.8vh;
+        width: 100%;
+        font-weight: bold;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-top: 2.5%;
+    }
+</style>
+
+
+
+
+<script type="application/json" id="semoss">
+    {
+	"variables": [
+		{
+			"name": "StdCov",
+			"type": "Query",
+			"value": "( Database ( database = [ \"666faa3d-ec1a-4109-8889-8b7e17470ccf\" ] ) | Select ( UniqueCount(standards__id) ) .as ( [ standard_id ] ) | Filter ( ( ( standards__id == (Database ( database = [ \"666faa3d-ec1a-4109-8889-8b7e17470ccf\" ] ) | Select ( testcase_standards__standard_id ) .as ( [ standard_id , overall_result ] ) | Join ( ( testcases , inner.join , testcase_standards ) ) | Filter ( ( ( testcases__overall_result != [ \"Not Tested\" ] ) ) ) | Distinct ( true ) | Collect ( - 1 ) ) ) ) ) | Distinct ( true ) |Iterate() | GrabScalarElement() ) / (Database ( database = [ \"666faa3d-ec1a-4109-8889-8b7e17470ccf\" ] ) | Select ( UniqueCount(standards__id) ) .as ( [ standard_id ] ) | Distinct ( true ) | Iterate() | GrabScalarElement() )"
+		},
+		{
+			"name": "NatCapCov",
+			"type": "Query",
+			"value": "(Database ( database = [ \"666faa3d-ec1a-4109-8889-8b7e17470ccf\" ] ) | Select ( UniqueCount(nations__name) ) .as ( [ count_nation ] ) | Filter ( ( ( nations__name == (Database ( database = [ \"666faa3d-ec1a-4109-8889-8b7e17470ccf\" ] ) | Select ( nations__name , capabilities__id  ) .as ( [ nation_name , id  ] ) | Join ( ( nations , left.outer.join , capabilities ) ) | Filter ( ( ( capabilities__id != [ null ] ) ) ) | Distinct( true ) | Collect(-1))))) | Distinct( true ) | Iterate() | GrabScalarElement()) / (Database ( database = [ \"666faa3d-ec1a-4109-8889-8b7e17470ccf\" ] ) | Select ( UniqueCount(nations__name) ) .as ( [ count_nation ] ) | Distinct( true ) | Iterate() | GrabScalarElement())"
+		},
+		{
+			"name": "NatCapNotTested",
+			"type": "Query",
+			"value": "(Database ( database = [ \"666faa3d-ec1a-4109-8889-8b7e17470ccf\" ] ) | Select ( UniqueCount(nations__name) ) .as ( [ count_nation_with_tested_cap ] ) | Join ( ( testcases , left.outer.join , test_participants ) , ( capabilities , right.outer.join , test_participants ) , ( nations , right.outer.join , capabilities ) ) | Distinct ( true ) | Filter (testcases__exercise_cycle == [null] AND capabilities__name != [null]) | Distinct( true ) | Iterate() | GrabScalarElement())/(Database ( database = [ \"666faa3d-ec1a-4109-8889-8b7e17470ccf\" ] ) | Select ( UniqueCount(nations__name) ) .as ( [ count_nation_with_cap ] ) | Filter ( ( ( nations__name == (Database ( database = [ \"666faa3d-ec1a-4109-8889-8b7e17470ccf\" ] ) | Select ( nations__name , capabilities__id  ) .as ( [ nation_name , id  ] ) | Join ( ( nations , left.outer.join , capabilities ) ) | Filter ( ( ( capabilities__id != [ null ] ) ) ) | Distinct( true ) | Collect(-1))))) | Distinct( true ) | Iterate() | GrabScalarElement());"
+		}
+	],
+	"freeze": false,
+	"sanitize": true
+}
+</script>

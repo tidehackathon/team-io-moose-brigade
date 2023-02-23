@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TC Participant Grid</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+
+</head>
+
+<body>
+    <style>
+        .container {
+            padding-right: 0px;
+            padding-left: 0px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .progress {
+            display: flex;
+            height: 1rem;
+            overflow: hidden;
+            font-size: 0.75rem;
+            background-color: #e9ecef;
+            border-radius: 0.25rem;
+            width: 120%;
+        }
+
+        .row-group {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            column-gap: 60px;
+            padding: 1%;
+        }
+
+        .title {
+            width: 20%;
+            text-align: left;
+        }
+
+        .title2 {
+            display: flex;
+            width: 120%;
+            text-align: left;
+        }
+
+        .headerbar {
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #fff;
+        }
+
+        .divspace {
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        .main {
+            padding: 10px;
+            margin-top: 0px;
+            height: 750px;
+            /* Used in this example to enable scrolling */
+        }
+
+        table {
+            border-collapse: collapse;
+            font-family: Tahoma, Geneva, sans-serif;
+        }
+
+        table td {
+            padding: 15px;
+        }
+
+        table thead td {
+            background-color: #54585d;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 13px;
+            border: 1px solid #54585d;
+        }
+
+        table tbody td {
+            color: #636363;
+            border: 1px solid #dddfe1;
+        }
+
+        table tbody tr {
+            background-color: #f9fafb;
+        }
+
+        table tbody tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+
+        .parent {
+            width: 100%;
+            height: 100%;
+            display: table;
+            text-align: center;
+        }
+
+        .parent>.child {
+            display: table-cell;
+            vertical-align: middle;
+        }
+    </style>
+    <main>
+        <div class="main">
+            <div id="records"></div>
+            <div id="notes" class="divspace"></div>
+            <div id="lastmessage" class="divspace"></div>
+        </div>
+    </main>
+
+    <script src="./semoss.js"></script>
+    <script>
+        // create a new instance of the listener
+        const semoss = new Semoss();
+
+        // track if the button is paused or not
+        let paused = false;
+
+        // grab the elements
+        //const bsoEle = document.body.querySelector("#records");
+        //let demo = document.body.querySelector("#demo");
+        const recordsEle = document.body.querySelector("#records");
+        const notesEle = document.body.querySelector("#notes");
+        const lastmessageEle = document.body.querySelector("#lastmessage");
+        let userId = "";
+
+        const getRecords = (init) => {
+            if (init) {
+                let outputHtml = "<section class=\"parent\"><div class=\"child\"><h3 style=\"text-align: center;\">&nbsp; Please click a test case from the grid</h3></div></section>";
+                recordsEle.innerHTML = outputHtml;
+            } else {
+                semoss.query(
+                    `Frame ( frame = [ tc_details ] ) | Select ( capability_id , exercise_cycle , participant_result , participant_role , testcase_id ) | Collect ( - 1 ) ;`,
+                    (response) => {
+                        const { operationType, output } = response.pixelReturn[0];
+
+                        if (operationType.indexOf("ERROR") > -1) {
+                            console.error("ERROR ::: getRecords", output);
+                            return;
+                        }
+                        //data = output.data.values;
+                        let queryResult = output.data.values;
+
+                        result = {};
+                        metrics = {};
+                        tycomToParAct = {};
+                        parActToAct = {};
+
+                        let viewHtml = getMyJSONOutput(queryResult);
+                        recordsEle.innerHTML = viewHtml;
+                        let insertHtml = getInsertHtml();
+                        notesEle.innerHTML = insertHtml;
+                    }
+                );
+            }
+        };
+
+        /** Helpers */
+
+        /**
+         * Get the records from the frame
+         */
+        function getMyJSONOutput(dataInput) {
+            // array of arrays
+            let outputHtml = "";
+            let init = true;
+
+            for (const index in dataInput) {
+                const row = dataInput[index];
+                // ( capability_id , exercise_cycle , participant_result , participant_role , testcase_id )
+                let capability_id = row[0];
+                let exercise_cycle = row[1];
+                let participant_result = row[2];
+                let participant_role = row[3];
+                let testcase_id = row[4];
+
+                if (init) {
+                    outputHtml = `<div class="divspace"><h3>&nbsp; Participant Results For Test ID: <span id="testid">` + testcase_id + `</span></h3><table><tr><td>Capability</td><td>Result</td><td>Role</td></tr>`;
+                    init = false;
+                }
+
+                outputHtml += "<tr>";
+                outputHtml += "<td>" + capability_id + "</td>";
+                outputHtml += "<td>" + participant_result + "</td>";
+                outputHtml += "<td>" + participant_role + "</td>";
+                outputHtml += "</tr>";
+            }
+            outputHtml += "</table></div>";
+
+            return outputHtml;
+        }
+
+        /**
+         * 
+         */
+        function getInsertHtml() {
+            let outputHtml = `<div class="form-group"><label for="notes">Notes:</label><textarea class="form-control" id="usernotes" rows="5" placeholder="Enter justification for success overall outcome"></textarea></div><button type="button" class="btn btn-primary btn-sm" onclick="addJustification()">Insert Notes</button>`;
+            return outputHtml;
+        }
+
+        /**
+         * Listen to pixel updates on the recipe
+         * @param {Event} - event containing information about every pixel
+         */
+        const onPixelUpdate = (e) => {
+            const { payload } = e.detail;
+
+            // refresh the records when any frame changes
+            let refreshData = false;
+            if (payload.pixelReturn) {
+                for (
+                    let idx = 0, len = payload.pixelReturn.length;
+                    idx < len;
+                    idx++
+                ) {
+                    const { operationType } = payload.pixelReturn[idx];
+
+                    // refresh the data if any frame changes
+                    if (operationType.indexOf("FRAME_DATA_CHANGE") > -1
+                        || operationType.indexOf("FRAME_FILTER_CHANGE") > -1) {
+                        refreshData = true;
+                    } else if (operationType.indexOf("VECTOR") > -1) {
+                        // investigate the input returns
+                        let innerOperationType = payload.pixelReturn[idx].output[0].operationType;
+                        if (innerOperationType.indexOf("FRAME_DATA_CHANGE") > -1
+                            || innerOperationType.indexOf("FRAME_FILTER_CHANGE") > -1) {
+                            refreshData = true;
+                        }
+                    }
+                }
+            }
+
+            if (refreshData) {
+                getRecords(false);
+            }
+        };
+
+        /**
+         * Insert justification
+         */
+        const addJustification = () => {
+            const userNotesEle = document.body.querySelector("#usernotes");
+            let notes = userNotesEle.value;
+
+            const testIdEle = document.body.querySelector("#testid");
+            let testId = testIdEle.innerHTML;
+
+            let updatePixel = `META|Database(database=["f873d94b-2bfe-412c-88dd-c198928d309a"]) | Insert(into=[user_success_disparity__notes, user_success_disparity__id, user_success_disparty__userid, user_success_disparity__insertion_timestamp], values=[("`+notes+`"), (`+testId+`), ("<USER_ID>"), (Timestamp())]);META|R("<encode>user_input[user_input$id==`+testId+`,]$notes <- "`+notes+`";user_input[user_input$id==`+testId+`,]$userid <- "`+userId+`";user_input[user_input$id==`+testId+`,]$insertion_timestamp <- as.POSIXct(Sys.time());</encode>");Frame ( frame = [ user_input ] ) | Select ( id , tc_number , exercise_cycle , io_shortfall_ind , notes , userid , insertion_timestamp ) .as ( [ id , tc_number , exercise_cycle , io_shortfall_ind , notes , userid , insertion_timestamp ] ) | With ( Panel ( 0 ) ) | Format ( type = [ 'table' ] ) | TaskOptions ( { "0" : { "layout" : "Grid" , "alignment" : { "label" : [ "id" , "tc_number" , "exercise_cycle" , "io_shortfall_ind" , "notes" , "userid" , "insertion_timestamp" ] } , "layer" : { "id" : "0" , "name" : "Layer 0" , "addYAxis" : true , "addXAxis" : true , "z" : 2 , "base" : true } } } ) | Collect ( 2000 ) ;`;
+
+            semoss.run(updatePixel, 
+                (response) => {
+                    const { operationType, output } = response.pixelReturn[0];
+
+                    if (operationType.indexOf("ERROR") > -1) {
+                        console.error("ERROR ::: addJustification", output);
+                        lastmessageEle.innerHTML = `<div class="alert alert-success" role="alert">Error adding notes for `+testId+`!</div>`;
+                        return;
+                    }
+
+                    userNotesEle.value = "";
+                    lastmessageEle.innerHTML = `<div class="alert alert-success" role="alert">Successfully added notes for `+testId+`!</div>`;
+                }
+            );
+        };
+
+        const getUserId = () => {
+            let updatePixel = `META|GetUserInfo()`;
+
+            semoss.query(updatePixel, 
+                (response) => {
+                    const { operationType, output } = response.pixelReturn[0];
+
+                    if (operationType.indexOf("ERROR") > -1) {
+                        console.error("ERROR ::: getUserInfo", output);
+                        return;
+                    }
+
+                    userId = output['NATIVE']['id'];
+                }
+            );
+        }
+
+        semoss.addListener("pixel-update", onPixelUpdate);
+        getRecords(true);
+        getUserId();
+    </script>
+</body>
+
+</html>

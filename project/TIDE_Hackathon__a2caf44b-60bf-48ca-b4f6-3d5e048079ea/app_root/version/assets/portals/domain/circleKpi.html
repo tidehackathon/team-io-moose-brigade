@@ -1,0 +1,258 @@
+<body>
+
+    <style>
+    .absolute-container {
+      background-color: white;
+      overflow-x: hidden;
+      padding: 0.5% 1%;
+    }
+
+    .line {
+      width: 90px;
+      background: black;
+      height: 2px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .middle {
+      line-height: calc(var(--size, 200) * 0.75px);
+      height: calc(var(--size, 200) * 0.75px);
+      width: calc(var(--size, 200) * 0.75px);
+      position: relative;
+      background: #28a745;
+      border-radius: 100%;
+      margin: calc(var(--size, 200) * 0.125px) auto;
+      text-align: center;
+      font-size: calc(var(--size, 200) * 0.16px);
+      font-weight: bold;
+      color: black;
+    }
+    .row-group {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      padding-left: 1%;
+      padding-right: 1%;
+      /* column-gap: 60px; */
+      /* padding-left: 2.5%; */
+    }
+    </style>
+    
+    <main>
+
+        <div class="row-group">
+            <div style="width: 100%">
+              <div id="fillHeader"></div>
+      
+              <canvas
+                id="chartProgress"
+                style="display: block"
+                class="chartjs-render-monitor"
+              >
+                <!-- <canvas
+                id="chartProgress"
+                width="1900"
+                height="187"
+                style="display: block"
+                class="chartjs-render-monitor"
+              > -->
+              </canvas>
+            </div>
+            <div style="width: 100%">
+              <div id="totalPass"></div>
+            </div>
+            <div style="width: 100%">
+              <div id="totalFail"></div>
+            </div>
+            <div style="width: 100%">
+              <div id="totalRecords"></div>
+            </div>
+            <div style="width: 100%">
+              <div id="notTested"></div>
+            </div>
+          </div>
+
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="./semoss.js"></script>
+
+    <script type="text/javascript">
+        let percentAmount = 20;
+        const fillHeaderEle = document.body.querySelector("#fillHeader");
+        const totalPassEle = document.body.querySelector("#totalPass");
+        const totalFailEle = document.body.querySelector("#totalFail");
+        const totalRecordsEle = document.body.querySelector("#totalRecords");
+        const notTestedEle = document.body.querySelector("#notTested");
+
+        
+        // create a new instance of the listener
+        const semoss = new Semoss();
+
+        const getRecords = () => {
+            // rate circle
+            semoss.query(
+            `Frame ( frame = [ domainPassRate ] ) | Select ( Average ( pass_rate ) ) .as ( [ Average_of_pass_rate ] ) | Iterate ( ) | GrabScalarElement ( ) ;`,
+            (response1) => {
+                const { operationType, output } = response1.pixelReturn[0];
+                if (operationType.indexOf("ERROR") > -1) {
+                console.error("ERROR ::: getRecords", output);
+                return;
+                }
+                fillHeaderEle.innerHTML = getKpi("Average Pass Rate", output, "#28a745", true);
+                getProgressCircle(output);
+            }
+            );
+            // total pass
+            semoss.query(
+            `Frame ( frame = [ domainPassRate ] ) | Select ( Sum ( num_pass ) ) | Iterate ( ) | GrabScalarElement ( ) ;`,
+            (response) => {
+                const { operationType, output } = response.pixelReturn[0];
+                if (operationType.indexOf("ERROR") > -1) {
+                console.error("ERROR ::: getRecords", output);
+                return;
+                }
+                totalPassEle.innerHTML = getKpi("Total Tests Passed", output, "#28a745");
+            }
+            );
+            // // total fail
+            semoss.query(
+            `Frame ( frame = [ domainPassRate ] ) | Select ( Sum ( num_fail ) ) | Iterate ( ) | GrabScalarElement ( ) ;`,
+            (response) => {
+                const { operationType, output } = response.pixelReturn[0];
+                if (operationType.indexOf("ERROR") > -1) {
+                console.error("ERROR ::: getRecords", output);
+                return;
+                }
+                totalFailEle.innerHTML = getKpi("Total Tests Failed", output, "#dc3545");
+            }
+            );
+            // // total records
+            semoss.query(
+            `Frame ( frame = [ domainPassRate ] ) | UniqueCount ( Select ( domain_name ) ) | Iterate ( ) | GrabScalarElement ( ) ;`,
+            (response) => {
+                const { operationType, output } = response.pixelReturn[0];
+                if (operationType.indexOf("ERROR") > -1) {
+                console.error("ERROR ::: getRecords", output);
+                return;
+                }
+                totalRecordsEle.innerHTML = getKpi("Total Number of Domains", output, "#28a745");
+            }
+            );
+            // // not tested
+            semoss.query(
+            `Frame ( frame = [ domainPassRate ] ) | UniqueCount ( Select ( domain_name ) ) | Filter ( exercise_cycle == null ) | Iterate ( ) | GrabScalarElement ( ) ;`,
+            (response) => {
+                const { operationType, output } = response.pixelReturn[0];
+                if (operationType.indexOf("ERROR") > -1) {
+                console.error("ERROR ::: getRecords", output);
+                return;
+                }
+                notTestedEle.innerHTML = getKpi("Number of Domains not Participating", output, "#ffc107");
+            }
+            );
+        };
+
+        
+        function getProgressCircle(perct) {
+            var myChartCircle = new Chart('chartProgress', {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                label: 'Average Pass Rate',
+                percent: perct,
+                backgroundColor: ['#28a745']
+                }]
+            },
+            plugins: [{
+                beforeInit: (chart) => {
+                    const dataset = chart.data.datasets[0];
+                    chart.data.labels = [dataset.label];
+                    dataset.data = [perct, 100 - perct];
+                }
+                },
+                {
+                beforeDraw: (chart) => {
+                    var width = chart.chart.width,
+                    height = chart.chart.height,
+                    ctx = chart.chart.ctx;
+                    ctx.restore();
+                    var fontSize = (height / 150).toFixed(2);
+                    ctx.font = fontSize + "em sans-serif";
+                    ctx.fillStyle = "#333";
+                    ctx.textBaseline = "middle";
+                    var text = chart.data.datasets[0].percent.toFixed(2) + "%",
+                    textX = Math.round((width - ctx.measureText(text).width) / 2),
+                    textY = height / 2;
+                    ctx.fillText(text, textX, textY);
+                    ctx.save();
+                }
+                }
+            ],
+            options: {
+                cutoutPercentage: 85,
+                rotation: Math.PI / 2,
+                legend: {
+                display: false,
+                },
+                tooltips: {
+                }
+            }
+            });
+            return myChartCircle;
+        }
+
+        function getKpi(displayLabel, displayValue, displayColour, skip) {
+            let kpiString = "<div class=\"absolute-container\">";
+            
+            kpiString += "<p style=\"text-align: center;font-weight: bold;color: black;margin-bottom: 2px;\">" + displayLabel + "</p>";
+            kpiString += "<div class=\"line\"></div>";
+            if (skip == true){
+                kpiString += "</div>";
+                return kpiString; 
+            }
+                kpiString += "<div class=\"pie\" style=\"--size: 120\">";
+                kpiString += "<div ng-class=\"pie\" style=\"--value:" + displayValue + ";\"></div>";
+                kpiString += "<div class=\"middle\" style=\"color: white; font-size: 20px; background:" + displayColour + ";\">" + displayValue + "</div>";
+            kpiString += "</div>";
+
+            return kpiString;
+        };
+
+                    /**
+       * Listen to pixel updates on the recipe
+       * @param {Event} - event containing information about every pixel
+       */
+       const onPixelUpdate = (e) => {
+        const { payload } = e.detail;
+
+        // refresh the records when any frame changes
+        let refreshData = false;
+        if (payload.pixelReturn) {
+          for (
+            let idx = 0, len = payload.pixelReturn.length;
+            idx < len;
+            idx++
+          ) {
+            const { operationType } = payload.pixelReturn[idx];
+
+            // refresh the data if any frame changes
+            if (operationType.indexOf("FRAME_DATA_CHANGE") > -1 || operationType.indexOf("FRAME_FILTER_CHANGE") > -1) {
+              refreshData = true;
+            }
+          }
+        }
+
+        if (refreshData) {
+          getRecords();
+        }
+      };
+
+      semoss.addListener("pixel-update", onPixelUpdate);
+
+      getRecords();
+    </script>
+
+<div class="as-console-wrapper"><div class="as-console"></div></div></body>
