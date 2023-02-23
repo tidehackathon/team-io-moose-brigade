@@ -7,7 +7,8 @@ The data shown in this report contains test cases where the overall score was su
 The query used to pull in this grid is:
 
 ```
-select exercise_cycle, id, cast(io_shortfall_ind as varchar(50)), overall_result, tc_number, title from testcases 
+select exercise_cycle, id, cast(io_shortfall_ind as varchar(50)), overall_result, tc_number, title 
+from testcases 
 where 
 overall_result='Success' and 
 (
