@@ -1,6 +1,6 @@
 # Database Setup
 
-Databases in SEMOSS contain a ".smss" file which holds connection details and a corresponding folder containing metadata around the database. As an example. TIDE__666faa3d-ec1a-4109-8889-8b7e17470ccf folder and TIDE__666faa3d-ec1a-4109-8889-8b7e17470ccf.smss represent a single database together.
+Databases in SEMOSS contain a ".smss" file which holds connection details and a corresponding folder containing metadata around the database. As an example, TIDE__666faa3d-ec1a-4109-8889-8b7e17470ccf folder and TIDE__666faa3d-ec1a-4109-8889-8b7e17470ccf.smss represent a single database together.
 
 Database metadata is stored in a OWL file (RDF/XML format) which describes the database tables, columns, and connections.
 You will need to update the ".smss" file with the proper credentials. 
