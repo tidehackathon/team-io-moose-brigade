@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+	xmlns="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation">
+	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/total/operational_domain_overall_pass">
+	<Class rdf:resource="TYPE:int4"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/operational_domain_name/operational_domain_overall_pass">
+	<Class rdf:resource="TYPE:varchar"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/num_pass/operational_domain_overall_pass">
+	<Class rdf:resource="TYPE:int4"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/operational_domain_id/operational_domain_overall_pass">
+	<Class rdf:resource="TYPE:varchar"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/exercise_cycle/operational_domain_overall_pass">
+	<Class rdf:resource="TYPE:varchar"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/pass_rate/operational_domain_overall_pass">
+	<Class rdf:resource="TYPE:float8"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/user_success_disparity">
+	<subClassOf rdf:resource="http://semoss.org/ontologies/Concept"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/num_fail/operational_domain_overall_pass">
+	<Class rdf:resource="TYPE:int4"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/capabilities_overall_pass">
+	<subClassOf rdf:resource="http://semoss.org/ontologies/Concept"/>
+	<domain>noData</domain>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Concept/capabilities_overall_pass"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">capabilities_overall_pass</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/capability_id/capabilities_overall_pass">
+	<rdf:type rdf:resource="http://semoss.org/ontologies/Relation/Contains"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/capabilities_overall_pass">
+	<DatatypeProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://semoss.org/ontologies/Relation/Contains/capability_id/capabilities_overall_pass"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/capability_id/capabilities_overall_pass">
+	<Class rdf:resource="TYPE:VARCHAR(800)"/>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Relation/Contains/capability_id/capabilities_overall_pass"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">capability_id</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/capability_name/capabilities_overall_pass">
+	<rdf:type rdf:resource="http://semoss.org/ontologies/Relation/Contains"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/capabilities_overall_pass">
+	<DatatypeProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://semoss.org/ontologies/Relation/Contains/capability_name/capabilities_overall_pass"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/capability_name/capabilities_overall_pass">
+	<Class rdf:resource="TYPE:VARCHAR(800)"/>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Relation/Contains/capability_name/capabilities_overall_pass"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">capability_name</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/exercise_cycle/capabilities_overall_pass">
+	<rdf:type rdf:resource="http://semoss.org/ontologies/Relation/Contains"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/capabilities_overall_pass">
+	<DatatypeProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://semoss.org/ontologies/Relation/Contains/exercise_cycle/capabilities_overall_pass"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/exercise_cycle/capabilities_overall_pass">
+	<Class rdf:resource="TYPE:VARCHAR(800)"/>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Relation/Contains/exercise_cycle/capabilities_overall_pass"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">exercise_cycle</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/num_fail/capabilities_overall_pass">
+	<rdf:type rdf:resource="http://semoss.org/ontologies/Relation/Contains"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/capabilities_overall_pass">
+	<DatatypeProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://semoss.org/ontologies/Relation/Contains/num_fail/capabilities_overall_pass"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/num_fail/capabilities_overall_pass">
+	<Class rdf:resource="TYPE:INT"/>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Relation/Contains/num_fail/capabilities_overall_pass"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">num_fail</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/num_pass/capabilities_overall_pass">
+	<rdf:type rdf:resource="http://semoss.org/ontologies/Relation/Contains"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/capabilities_overall_pass">
+	<DatatypeProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://semoss.org/ontologies/Relation/Contains/num_pass/capabilities_overall_pass"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/num_pass/capabilities_overall_pass">
+	<Class rdf:resource="TYPE:INT"/>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Relation/Contains/num_pass/capabilities_overall_pass"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">num_pass</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/pass_rate/capabilities_overall_pass">
+	<rdf:type rdf:resource="http://semoss.org/ontologies/Relation/Contains"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/capabilities_overall_pass">
+	<DatatypeProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://semoss.org/ontologies/Relation/Contains/pass_rate/capabilities_overall_pass"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/pass_rate/capabilities_overall_pass">
+	<Class rdf:resource="TYPE:FLOAT"/>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Relation/Contains/pass_rate/capabilities_overall_pass"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">pass_rate</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/total/capabilities_overall_pass">
+	<rdf:type rdf:resource="http://semoss.org/ontologies/Relation/Contains"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/capabilities_overall_pass">
+	<DatatypeProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://semoss.org/ontologies/Relation/Contains/total/capabilities_overall_pass"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/total/capabilities_overall_pass">
+	<Class rdf:resource="TYPE:INT"/>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Relation/Contains/total/capabilities_overall_pass"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">total</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/num_fail/capabilities_overall_pass">
+	<Class rdf:resource="TYPE:int4"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/pass_rate/capabilities_overall_pass">
+	<Class rdf:resource="TYPE:float8"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/total/capabilities_overall_pass">
+	<Class rdf:resource="TYPE:int4"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/num_pass/capabilities_overall_pass">
+	<Class rdf:resource="TYPE:int4"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/capability_name/capabilities_overall_pass">
+	<Class rdf:resource="TYPE:varchar"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/capability_id/capabilities_overall_pass">
+	<Class rdf:resource="TYPE:varchar"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/exercise_cycle/capabilities_overall_pass">
+	<Class rdf:resource="TYPE:varchar"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/operational_domain_overall_pass">
+	<subClassOf rdf:resource="http://semoss.org/ontologies/Concept"/>
+	<domain>noData</domain>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Concept/operational_domain_overall_pass"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">operational_domain_overall_pass</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/exercise_cycle/operational_domain_overall_pass">
+	<rdf:type rdf:resource="http://semoss.org/ontologies/Relation/Contains"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/operational_domain_overall_pass">
+	<DatatypeProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://semoss.org/ontologies/Relation/Contains/exercise_cycle/operational_domain_overall_pass"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/exercise_cycle/operational_domain_overall_pass">
+	<Class rdf:resource="TYPE:VARCHAR(800)"/>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Relation/Contains/exercise_cycle/operational_domain_overall_pass"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">exercise_cycle</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/num_fail/operational_domain_overall_pass">
+	<rdf:type rdf:resource="http://semoss.org/ontologies/Relation/Contains"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/operational_domain_overall_pass">
+	<DatatypeProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://semoss.org/ontologies/Relation/Contains/num_fail/operational_domain_overall_pass"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/num_fail/operational_domain_overall_pass">
+	<Class rdf:resource="TYPE:INT"/>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Relation/Contains/num_fail/operational_domain_overall_pass"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">num_fail</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/num_pass/operational_domain_overall_pass">
+	<rdf:type rdf:resource="http://semoss.org/ontologies/Relation/Contains"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/operational_domain_overall_pass">
+	<DatatypeProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://semoss.org/ontologies/Relation/Contains/num_pass/operational_domain_overall_pass"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/num_pass/operational_domain_overall_pass">
+	<Class rdf:resource="TYPE:INT"/>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Relation/Contains/num_pass/operational_domain_overall_pass"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">num_pass</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/operational_domain_id/operational_domain_overall_pass">
+	<rdf:type rdf:resource="http://semoss.org/ontologies/Relation/Contains"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/operational_domain_overall_pass">
+	<DatatypeProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://semoss.org/ontologies/Relation/Contains/operational_domain_id/operational_domain_overall_pass"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/operational_domain_id/operational_domain_overall_pass">
+	<Class rdf:resource="TYPE:VARCHAR(800)"/>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Relation/Contains/operational_domain_id/operational_domain_overall_pass"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">operational_domain_id</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/operational_domain_name/operational_domain_overall_pass">
+	<rdf:type rdf:resource="http://semoss.org/ontologies/Relation/Contains"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/operational_domain_overall_pass">
+	<DatatypeProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://semoss.org/ontologies/Relation/Contains/operational_domain_name/operational_domain_overall_pass"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/operational_domain_name/operational_domain_overall_pass">
+	<Class rdf:resource="TYPE:VARCHAR(800)"/>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Relation/Contains/operational_domain_name/operational_domain_overall_pass"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">operational_domain_name</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/pass_rate/operational_domain_overall_pass">
+	<rdf:type rdf:resource="http://semoss.org/ontologies/Relation/Contains"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/operational_domain_overall_pass">
+	<DatatypeProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://semoss.org/ontologies/Relation/Contains/pass_rate/operational_domain_overall_pass"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/pass_rate/operational_domain_overall_pass">
+	<Class rdf:resource="TYPE:FLOAT"/>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Relation/Contains/pass_rate/operational_domain_overall_pass"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">pass_rate</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/total/operational_domain_overall_pass">
+	<rdf:type rdf:resource="http://semoss.org/ontologies/Relation/Contains"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/operational_domain_overall_pass">
+	<DatatypeProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://semoss.org/ontologies/Relation/Contains/total/operational_domain_overall_pass"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/total/operational_domain_overall_pass">
+	<Class rdf:resource="TYPE:INT"/>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Relation/Contains/total/operational_domain_overall_pass"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">total</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/user_success_disparity">
+	<domain>noData</domain>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Concept/user_success_disparity"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">user_success_disparity</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/notes/user_success_disparity">
+	<rdf:type rdf:resource="http://semoss.org/ontologies/Relation/Contains"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/user_success_disparity">
+	<DatatypeProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://semoss.org/ontologies/Relation/Contains/notes/user_success_disparity"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/notes/user_success_disparity">
+	<Class rdf:resource="TYPE:varchar"/>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Relation/Contains/notes/user_success_disparity"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">notes</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/id/user_success_disparity">
+	<rdf:type rdf:resource="http://semoss.org/ontologies/Relation/Contains"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/user_success_disparity">
+	<DatatypeProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://semoss.org/ontologies/Relation/Contains/id/user_success_disparity"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/id/user_success_disparity">
+	<Class rdf:resource="TYPE:int4"/>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Relation/Contains/id/user_success_disparity"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">id</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/nations_overall_pass">
+	<subClassOf rdf:resource="http://semoss.org/ontologies/Concept"/>
+	<domain>noData</domain>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Concept/nations_overall_pass"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">nations_overall_pass</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/exercise_cycle/nations_overall_pass">
+	<rdf:type rdf:resource="http://semoss.org/ontologies/Relation/Contains"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/nations_overall_pass">
+	<DatatypeProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://semoss.org/ontologies/Relation/Contains/exercise_cycle/nations_overall_pass"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/exercise_cycle/nations_overall_pass">
+	<Class rdf:resource="TYPE:VARCHAR(800)"/>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Relation/Contains/exercise_cycle/nations_overall_pass"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">exercise_cycle</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/nation_id/nations_overall_pass">
+	<rdf:type rdf:resource="http://semoss.org/ontologies/Relation/Contains"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/nations_overall_pass">
+	<DatatypeProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://semoss.org/ontologies/Relation/Contains/nation_id/nations_overall_pass"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/nation_id/nations_overall_pass">
+	<Class rdf:resource="TYPE:VARCHAR(800)"/>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Relation/Contains/nation_id/nations_overall_pass"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">nation_id</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/nation_name/nations_overall_pass">
+	<rdf:type rdf:resource="http://semoss.org/ontologies/Relation/Contains"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/nations_overall_pass">
+	<DatatypeProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://semoss.org/ontologies/Relation/Contains/nation_name/nations_overall_pass"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/nation_name/nations_overall_pass">
+	<Class rdf:resource="TYPE:VARCHAR(800)"/>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Relation/Contains/nation_name/nations_overall_pass"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">nation_name</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/num_fail/nations_overall_pass">
+	<rdf:type rdf:resource="http://semoss.org/ontologies/Relation/Contains"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/nations_overall_pass">
+	<DatatypeProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://semoss.org/ontologies/Relation/Contains/num_fail/nations_overall_pass"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/num_fail/nations_overall_pass">
+	<Class rdf:resource="TYPE:INT"/>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Relation/Contains/num_fail/nations_overall_pass"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">num_fail</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/num_pass/nations_overall_pass">
+	<rdf:type rdf:resource="http://semoss.org/ontologies/Relation/Contains"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/nations_overall_pass">
+	<DatatypeProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://semoss.org/ontologies/Relation/Contains/num_pass/nations_overall_pass"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/num_pass/nations_overall_pass">
+	<Class rdf:resource="TYPE:INT"/>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Relation/Contains/num_pass/nations_overall_pass"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">num_pass</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/pass_rate/nations_overall_pass">
+	<rdf:type rdf:resource="http://semoss.org/ontologies/Relation/Contains"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/nations_overall_pass">
+	<DatatypeProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://semoss.org/ontologies/Relation/Contains/pass_rate/nations_overall_pass"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/pass_rate/nations_overall_pass">
+	<Class rdf:resource="TYPE:FLOAT"/>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Relation/Contains/pass_rate/nations_overall_pass"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">pass_rate</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/total/nations_overall_pass">
+	<rdf:type rdf:resource="http://semoss.org/ontologies/Relation/Contains"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/nations_overall_pass">
+	<DatatypeProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://semoss.org/ontologies/Relation/Contains/total/nations_overall_pass"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/total/nations_overall_pass">
+	<Class rdf:resource="TYPE:INT"/>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Relation/Contains/total/nations_overall_pass"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">total</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/num_fail/nations_overall_pass">
+	<Class rdf:resource="TYPE:int4"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/pass_rate/nations_overall_pass">
+	<Class rdf:resource="TYPE:float8"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/total/nations_overall_pass">
+	<Class rdf:resource="TYPE:int4"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/num_pass/nations_overall_pass">
+	<Class rdf:resource="TYPE:int4"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/exercise_cycle/nations_overall_pass">
+	<Class rdf:resource="TYPE:varchar"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/nation_id/nations_overall_pass">
+	<Class rdf:resource="TYPE:varchar"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/nation_name/nations_overall_pass">
+	<Class rdf:resource="TYPE:varchar"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/insertion_timestamp/user_success_disparity">
+	<rdf:type rdf:resource="http://semoss.org/ontologies/Relation/Contains"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/user_success_disparity">
+	<DatatypeProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://semoss.org/ontologies/Relation/Contains/insertion_timestamp/user_success_disparity"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/insertion_timestamp/user_success_disparity">
+	<Class rdf:resource="TYPE:timestamp"/>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Relation/Contains/insertion_timestamp/user_success_disparity"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">insertion_timestamp</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/userid/user_success_disparity">
+	<rdf:type rdf:resource="http://semoss.org/ontologies/Relation/Contains"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/user_success_disparity">
+	<DatatypeProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://semoss.org/ontologies/Relation/Contains/userid/user_success_disparity"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Relation/Contains/userid/user_success_disparity">
+	<Class rdf:resource="TYPE:varchar"/>
+	<Pixel xmlns="http://semoss.org/ontologies/Relation/" rdf:resource="http://semoss.org/ontologies/Relation/Contains/userid/user_success_disparity"/>
+	<Conceptual xmlns="http://semoss.org/ontologies/Relation/">userid</Conceptual>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://semoss.org/ontologies/Concept/TimeStamp">
+	<TIME xmlns="ENGINE:">2023:02:22 19:56:01</TIME>
+</rdf:Description>
+
+</rdf:RDF>
