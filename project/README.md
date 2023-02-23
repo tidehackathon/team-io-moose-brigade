@@ -5,3 +5,5 @@ Projects in SEMOSS contain a ".smss" file which holds connection details to a sm
 The insight database can be opened and viewed through your SQL Client of choice (DBeaver, DbVisualizer, etc.). It contains the recipe steps to produce the insight as well as metadata around the insight. It does not contain the actual data of the report, the recipe is executed at runtime (similar to an excel macro) and pulls the information from the databases to generate the final view (slight exception with caching of insights but can ignore this caveat for now).
 
 You can create a zip file containing the project smss file with its corresponding project folder and upload it into your SEMOSS instance through the landing page:
+
+![Alt text](../img/project-upload.png?raw=true "SEMOSS Project Upload UI")
