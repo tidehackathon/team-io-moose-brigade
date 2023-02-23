@@ -19,4 +19,4 @@ Then you can pull the starting semosshome folder by running:
 
 The base folder /opt/semoss/semosshome can be whatever path you want on the host OS, but if you change it to be different, you will then need to update the script path.  This is the base volume so that if the container is stopped / updated your insights will not be lost.
 
-You can setup the necessary environment variables in the var.env file.  As an example, the REDIRECT url in var.env will need to be updated to the domain name that is being used for the deployment. The current file is not meant to be the full set of options, please refer to https://github.com/SEMOSS/semoss-artifacts/tree/master/artifacts/scripts for all the possible parameterization options.
+You can setup the necessary environment variables in the var.env file.  As an example, the REDIRECT url in var.env will need to be updated to the domain name that is being used for the deployment. The current file is not meant to be the full set of options, please refer to this [SEMOSS Repository](https://github.com/SEMOSS/semoss-artifacts/tree/master/artifacts/scripts) for all the possible parameterization options.
