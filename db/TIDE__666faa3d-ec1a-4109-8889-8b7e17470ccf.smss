@@ -12,5 +12,5 @@ DATABASE	<database>
 PASSWORD	<password>
 PORT	5432
 USERNAME	<username>
-CONNECTION_URL	jdbc:postgresql://<DNC<:5432/<database>?currentSchema=<schema>
+CONNECTION_URL	jdbc:postgresql://<DNC>:5432/<database>?currentSchema=<schema>
 USE_CONNECTION_POOLING	false
