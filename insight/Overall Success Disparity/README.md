@@ -24,4 +24,5 @@ This information is then joined with another database where we will store the us
 
 This provides us an example of how dashboards are no longer read-only views, but can become into data products allowing read-write capabilities to not just see data quality issues but update them in real time.
 
+Link to insight recipe: https://github.com/tidehackathon/team-io-moose-brigade/tree/main/project/TIDE_Hackathon__a2caf44b-60bf-48ca-b4f6-3d5e048079ea/app_root/version/26e026ee-d263-4146-9a1b-f2ee521b5121
 
